@@ -23,7 +23,6 @@ weather = (('New York City',2013,'July','January',62),
 				('San Francisco',2013,'September','December',64),
 				('Los Angeles', 2013, 'September', 'December', 75))
 
-
 con = lite.connect('getting_started.db')
 
 with con:
@@ -33,7 +32,6 @@ with con:
 	cur.execute("DROP TABLE IF EXISTS weather")
 	cur.execute("CREATE TABLE cities (name text, state text)")
 	cur.execute("CREATE TABLE weather (city text, year integer, warm_month text, cold_month text, average_high integer)")
-	
 	cur.executemany("INSERT INTO cities VALUES (?, ?)", cities)
 	cur.executemany("INSERT INTO weather VALUES (?, ?, ?, ?, ?)", weather)
 	
