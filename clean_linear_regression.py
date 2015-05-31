@@ -7,7 +7,6 @@ loansData = pd.read_csv('https://spark-public.s3.amazonaws.com/dataanalysis/loan
 
 cleanInterestRate = loansData['Interest.Rate'].map(lambda x: round(float(x.rstrip('%')) / 100, 4))
 loansData['Interest.Rate'] = cleanInterestRate
-loansData['Interest.Rate'][0:5]
 
 cleanLoanLength = loansData['Loan.Length'].map(lambda x: int(x.rstrip('months')))
 
@@ -33,5 +32,7 @@ model = sm.OLS(y, X)
 f = model.fit()
 
 print f.summary()
+
+loansData.to_csv('loansData_clean.csv', header=True, index=False)
 
 
